@@ -1,0 +1,48 @@
+<form #form="ngForm">
+  <ul>
+    <li>
+      Verplicht via encapsulatie component<app-customfield
+        [(data)]="f2"
+        [required]="true"
+      ></app-customfield>
+      {{ f2 }}
+    </li>
+    <li>
+      Verplicht rechtstreeks
+      <input type="text" name="f1" [(ngModel)]="f1" [required]="true" />
+      {{ f1 }}
+    </li>
+  </ul>
+  <button [disabled]="form.invalid">Save</button>
+  <p>
+    Save zou disabled moeten zijn als beide niet ingevuld zijn maar de
+    geëncapsuleerde control zijn invalid state geraakt niet tot bij het form.
+  </p>
+  <p>Heb hier naar gekeken</p>
+  <ul>
+    <li>
+      <a href="https://stackblitz.com/edit/angular-4cbeix">
+        https://stackblitz.com/edit/angular-4cbeix
+      </a>
+    </li>
+    <li>
+      <a href="https://angular.io/api/forms/ControlValueAccessor"
+        >https://angular.io/api/forms/ControlValueAccessor</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://lukaonik.medium.com/adding-custom-validation-to-the-custom-form-control-in-angular-f4e9b13b4728"
+      >
+        https://lukaonik.medium.com/adding-custom-validation-to-the-custom-form-control-in-angular-f4e9b13b4728
+      </a>
+    </li>
+    <li>
+      <a
+        href="//https://timdeschryver.dev/blog/a-practical-guide-to-angular-template-driven-forms#form-building-blocks
+      "
+        >https://timdeschryver.dev/blog/a-practical-guide-to-angular-template-driven-forms#form-building-blocks
+      </a>
+    </li>
+  </ul>
+</form>
