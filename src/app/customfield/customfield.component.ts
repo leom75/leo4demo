@@ -11,10 +11,12 @@ import {
 import {
   AbstractControl,
   ControlValueAccessor,
+  FormBuilder,
   FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
+  Validators,
 } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -130,14 +132,22 @@ export class CustomfieldComponent
   dataChange: EventEmitter<any> = new EventEmitter();
   @Input()
   required: boolean;
-  constructor() {
+  constructor(private fb: FormBuilder) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('required', this.required);
+    if (this.required) {
+      this.input.setValidators([Validators.required]);
+      this.input.updateValueAndValidity();
+    }
+    console.log('value', this.input.value);
+    console.log(this.input.valid);
+  }
 
   changeModel = (e: any) => {
     this.dataChange.next(e);
-    this.onChange(e);
+    this.writeValue(e);
   };
 }
