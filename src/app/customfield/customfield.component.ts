@@ -10,9 +10,11 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
+  ControlContainer,
   ControlValueAccessor,
   FormBuilder,
   FormControl,
+  NgForm,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -121,6 +123,7 @@ export abstract class BaseControlValueAccessor<T>
       multi: true,
     },
   ],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class CustomfieldComponent
   extends BaseControlValueAccessor<any>
@@ -132,7 +135,7 @@ export class CustomfieldComponent
   dataChange: EventEmitter<any> = new EventEmitter();
   @Input()
   required: boolean;
-  constructor(private fb: FormBuilder) {
+  constructor() {
     super();
   }
 
