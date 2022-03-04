@@ -8,4 +8,5 @@ import { Component, VERSION } from '@angular/core';
 export class AppComponent {
   f1: any;
   f2: any;
+  f3: any;
 }

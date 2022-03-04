@@ -1,11 +1,18 @@
 <form #form="ngForm">
   <ul>
     <li>
-      Verplicht via encapsulatie component<app-customfield
+      Verplicht via encapsulatie component 1<app-customfield
         [(data)]="f2"
         [required]="true"
       ></app-customfield>
       {{ f2 }}
+    </li>
+    <li>
+      Verplicht via encapsulatie component 2<app-customfield
+        [(data)]="f3"
+        [required]="true"
+      ></app-customfield>
+      {{ f3 }}
     </li>
     <li>
       Verplicht rechtstreeks
@@ -17,7 +24,20 @@
   <p>
     Save zou disabled moeten zijn als beide niet ingevuld zijn maar de
     geëncapsuleerde control zijn invalid state geraakt niet tot bij het form.
+    Probleem deels opgelost. De error validaties zijn nu met elkaar verbonden.
+    Door dit toe te passen los ik het probleem op met de gedowngrade versie in angularjs.
   </p>
+  <pre>
+    viewProviders: [
+    {{ '{' }}
+      provide: ControlContainer,
+      deps: [[Optional, NgForm]],
+      useFactory: (ngForm: NgForm) => ngForm,
+
+      {{ '}' }},
+  ]</pre
+  >
+
   <p>Heb hier naar gekeken</p>
   <ul>
     <li>
